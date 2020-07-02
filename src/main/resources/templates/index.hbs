@@ -23,25 +23,25 @@
 		    <div class="panel-body panel-header">
 		        <i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add a <strong>NEW Author</strong> Here and Specify Author.
 		    </div>
-		    <!-- <div class="panel-footer">
+		    <div class="panel-footer">
 		    	<form action="/postNewBook" method="post" name="heroForm">
-		    		<input class="form-control mb0" type="text" placeholder="Enter Book Name..." name="bookName" autocomplete="off">
+		    		<input type="text" class="form-control mb0" type="text" placeholder="Enter Book Name..." name="bookName" autocomplete="off">
 		    		<input type="number" class="form-control" placeholder="Enter No of Pages..." name="noOfPages" autocomplete="off">
-		    		<textarea class="form-control mb0"  placeholder="Enter The Description..."name="description"></textarea>
+		    		<textarea type="text" class="form-control mb0"  placeholder="Enter The Description..."name="description"></textarea>
 			        
-		            <select class="form-control select2 mt15 mb0" name="hero_squad" data-placeholder="Assign to Squad">
-		            #if ($squad_hero)
+		            <select class="form-control select2 mt15 mb0" name="bookAuthor" data-placeholder="Assign to Author">
+		            {{#if authors}}
 	                	<option label="- Assign to Squad -"></option>
-		             	#foreach ($squad in $squad_hero)
-		                <option value="$squad.getId()">$squad.getSquadName()</option>
-		                #end
-		            #else
+		             	{{#each authors}}
+		                <option value="{{ id }}">{{ authorName }}</option>
+		                {{/each}}
+		            {{else}}
   						<option label="- No Squads Created -"></option>
-					#end    
+					{{/if}}   
 		            </select>
-		             <br><button type="submit" class="btn btn-success btn-xs"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add Character</button>
+		             <br><button type="submit" class="btn btn-success btn-xs"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add Book</button>
 		    	</form>			        
-		    </div> -->
+		    </div>
 		</div>		
 	</div>
 	<div class="col-md-8">
@@ -54,7 +54,7 @@
 	        		{{#each authors}}
 	        		<li>
 	        			<h4 class="hero-name">{{ authorName }}</h4>
-	        			<small><a href="">View Books</a> </small>
+	        			<small><a href="/author/{{id}}">View Books</a> </small>
 	        		</li>
                     {{/each}}
 	        	</ul>
@@ -63,25 +63,28 @@
                 {{/if}}
 	        </div>
 	    </div>
-		<!-- <div class="panel panel-default squads">
+		<div class="panel panel-default squads">
 	        <div class="panel-body">
-	        	<h3>Squads / Team Ups</h3>
+	        	<h3>Books in Archive</h3>
 	        	<hr>
-	        	
+	        	{{#if books}}
 	        	<ul>
-	        	
+	        	    {{#each books}}
 	        		<li class="mt10">
-	        			<small class="pull-right"><strong>Max Size: </strong></small>
-	        			<small class="pull-right"><strong>Current Size: </strong>, &nbsp;&nbsp;</small>
-	        			<h4 class="squad-name"></h4>
-	        			<small>Cause / Motive: <strong></strong></small><br>
-	        			<small><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;&nbsp;<a href="/squad/$squad.getId()">View Squad Members</a></small>
+	        			<h4 class="squad-name">{{ bookName }}</h4>
+	        			<small class="pull-right"><strong>Number of Page: {{ noOfPages }}</strong></small>
+	        			<small class="pull-right"><strong>{{ description }} </strong></small>
+	        			<!-- <small>Cause / Motive: <strong></strong></small><br>
+	        			<small><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;&nbsp;<a href="/squad/$squad.getId()">View Squad Members</a></small> -->
 	        		</li>
-	        	
+                    {{/each}}
+
 	            </ul>
-	            
+                {{else}}
+                    <span class="label label-warning">No Books Added Yet!</span>
+                {{/if}}
 	        </div>
-	    </div> -->
+	    </div>
 	</div>
 </div>
 

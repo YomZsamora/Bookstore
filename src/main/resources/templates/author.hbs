@@ -1,0 +1,27 @@
+{{#partial "content"}}
+
+
+<div class="container">
+	<div class="panel panel-default heroes">
+        <div class="panel-body">
+        	<h3>{{thisAuthor.authorName}}</h3>
+        	<hr>
+        	{{#if authorBooks}}
+        	<ul>
+        		{{#each authorBooks}}
+        		<li>
+        			<h4 class="hero-name">{{ bookName }} | {{ noOfPages }}</h4>
+        			<small>{{ description }} </small>
+        		</li>
+                {{/each}}
+        	</ul>
+            {{else}}
+        	<span class="label label-warning">No Authors Added Yet!</span>
+            {{/if}}
+        </div>
+    </div>
+</div>
+
+{{/partial}}
+
+{{> layout.hbs}}
