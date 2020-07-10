@@ -2,43 +2,44 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Author {
 
     private String authorName;
-    private static ArrayList<Author> allAuthors = new ArrayList<>();
     private int id;
-    private List<Books> authorsBooks;
 
     public Author(String authorName){
         this.authorName = authorName;
-        allAuthors.add(this); // Add authors to the ArrayList
-        this.id = allAuthors.size(); // Stores ID for each individual author
-        this.authorsBooks = new ArrayList<Books>();
-    }
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public static ArrayList<Author> getAllAuthors() {
-        return allAuthors;
     }
 
     public int getId() {
         return id;
     }
 
-    public static Author findAuthor(int id){
-        return allAuthors.get(id-1);
+    public void setId(int id) {
+        this.id = id;
     }
 
-
-    public void addBookToAuthor(Books newBook){
-        authorsBooks.add(newBook);
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
-    public List<Books> getAuthorsBooks() {
-        return authorsBooks;
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Author author = (Author) o;
+        return id == author.id &&
+                authorName.equals(author.authorName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(authorName, id);
     }
 }

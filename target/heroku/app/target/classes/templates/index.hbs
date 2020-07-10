@@ -1,0 +1,75 @@
+{{#partial "title"}}Home Page{{/partial}}
+
+
+{{#partial "content"}}
+
+<h1 class="mt40"></h1>
+<p class="intro">This is a Bookstore App that tracks Authors and their Books</p>
+<div class="row mb40">
+	<div class="col-md-4">		
+		<div class="panel panel-default">
+		    <div class="panel-body panel-header">
+		        <i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp;Add a <strong>NEW Author</strong>.
+	            <!-- <p class="exist-link mb0"><a href="" data-toggle="modal" data-target=".bs-example-modal-panel"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>&nbsp;&nbsp;View Existing Heroes</a></p> -->
+		    </div>
+		    <div class="panel-footer">
+		    	<form action="/postNewAuthor" method="post" name="squadForm">
+		    		<input class="form-control mb0" type="text" placeholder="Enter Author's Name..." name="authorName" autocomplete="off">
+		            <br><button type="submit" class="btn btn-success btn-xs"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add Author</button>
+		    	</form>			        
+		    </div>
+		</div>
+		<div class="panel panel-default">
+		    <div class="panel-body panel-header">
+		        <i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add a <strong>NEW Author</strong> Here and Specify Author.
+		    </div>
+		    <div class="panel-footer">
+		    	<form action="/postNewBook" method="post" name="heroForm">
+		    		<input type="text" class="form-control mb0" type="text" placeholder="Enter Book Name..." name="book_name" autocomplete="off">
+		    		<input type="number" class="form-control" placeholder="Enter No of Pages..." name="no_of_Pages" autocomplete="off">
+		    		<textarea type="text" class="form-control mb0"  placeholder="Enter The Description..." name="description"></textarea>
+			        
+		            <select class="form-control select2 mt15 mb0" name="bookAuthor" data-placeholder="Assign to Author">
+		            {{#if authors}}
+	                	<option label="- Assign to Squad -"></option>
+		             	{{#each authors}}
+		                <option value="{{ id }}">{{ authorName }}</option>
+		                {{/each}}
+		            {{else}}
+  						<option label="- No Squads Created -"></option>
+					{{/if}}   
+		            </select>
+		             <br><button type="submit" class="btn btn-success btn-xs"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add Book</button>
+		    	</form>			        
+		    </div>
+		</div>		
+	</div>
+	<div class="col-md-8">
+		<div class="panel panel-default heroes">
+	        <div class="panel-body">
+	        	<h3>Authors Added to Archive</h3>
+	        	<hr>
+	        	{{#if authors}}
+	        	<ul>
+	        		{{#each authors}}
+	        		<li>
+	        			<h4 class="hero-name">{{ authorName }}</h4>
+	        			<small><a href="/author/{{id}}">View Books</a> </small>
+	        		</li>
+                    {{/each}}
+	        	</ul>
+                {{else}}
+	        	<span class="label label-warning">No Authors Added Yet!</span>
+                {{/if}}
+	        </div>
+	    </div>
+		<div class="panel panel-default squads">
+
+	    </div>
+	</div>
+</div>
+
+
+{{/partial }}
+
+{{> layout.hbs}}

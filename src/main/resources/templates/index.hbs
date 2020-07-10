@@ -1,8 +1,8 @@
 {{#partial "title"}}Home Page{{/partial}}
 
 
-
 {{#partial "content"}}
+
 <h1 class="mt40"></h1>
 <p class="intro">This is a Bookstore App that tracks Authors and their Books</p>
 <div class="row mb40">
@@ -25,9 +25,9 @@
 		    </div>
 		    <div class="panel-footer">
 		    	<form action="/postNewBook" method="post" name="heroForm">
-		    		<input type="text" class="form-control mb0" type="text" placeholder="Enter Book Name..." name="bookName" autocomplete="off">
-		    		<input type="number" class="form-control" placeholder="Enter No of Pages..." name="noOfPages" autocomplete="off">
-		    		<textarea type="text" class="form-control mb0"  placeholder="Enter The Description..."name="description"></textarea>
+		    		<input type="text" class="form-control mb0" type="text" placeholder="Enter Book Name..." name="book_name" autocomplete="off">
+		    		<input type="number" class="form-control" placeholder="Enter No of Pages..." name="no_of_Pages" autocomplete="off">
+		    		<textarea type="text" class="form-control mb0"  placeholder="Enter The Description..." name="description"></textarea>
 			        
 		            <select class="form-control select2 mt15 mb0" name="bookAuthor" data-placeholder="Assign to Author">
 		            {{#if authors}}
@@ -64,26 +64,7 @@
 	        </div>
 	    </div>
 		<div class="panel panel-default squads">
-	        <div class="panel-body">
-	        	<h3>Books in Archive</h3>
-	        	<hr>
-	        	{{#if books}}
-	        	<ul>
-	        	    {{#each books}}
-	        		<li class="mt10">
-	        			<h4 class="squad-name">{{ bookName }}</h4>
-	        			<small class="pull-right"><strong>Number of Page: {{ noOfPages }}</strong></small>
-	        			<small class="pull-right"><strong>{{ description }} </strong></small>
-	        			<!-- <small>Cause / Motive: <strong></strong></small><br>
-	        			<small><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;&nbsp;<a href="/squad/$squad.getId()">View Squad Members</a></small> -->
-	        		</li>
-                    {{/each}}
 
-	            </ul>
-                {{else}}
-                    <span class="label label-warning">No Books Added Yet!</span>
-                {{/if}}
-	        </div>
 	    </div>
 	</div>
 </div>

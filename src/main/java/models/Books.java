@@ -1,22 +1,40 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Books {
 
     private String bookName;
     private int noOfPages;
     private String description;
-    private static ArrayList<Books> allBooks = new ArrayList<>();
     private int id;
 
     public Books(String bookName, int noOfPages, String description){
         this.bookName = bookName;
         this.noOfPages = noOfPages;
         this.description = description;
-        allBooks.add(this);
-        this.id = allBooks.size();
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public void setNoOfPages(int noOfPages) {
+        this.noOfPages = noOfPages;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getBookName() {
@@ -31,11 +49,19 @@ public class Books {
         return description;
     }
 
-    public static ArrayList<Books> getAllBooks() {
-        return allBooks;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Books books = (Books) o;
+        return noOfPages == books.noOfPages &&
+                id == books.id &&
+                bookName.equals(books.bookName) &&
+                description.equals(books.description);
     }
 
-    public int getId() {
-        return id;
+    @Override
+    public int hashCode() {
+        return Objects.hash(bookName, noOfPages, description, id);
     }
 }
